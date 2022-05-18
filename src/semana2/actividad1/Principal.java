@@ -12,9 +12,9 @@ public class Principal {
 		
 		EmpMensual empMens1 = new EmpMensual("Romina","Paito",333458,50,"Durazno","2528655",38000,"Comercial");
 		EmpMensual empMens2 = new EmpMensual("Lucas","Manzi",225698,45,"Montevideo","2887469",38500,"Comercial");
-		
-		
 		Sucursal suc3 = new Sucursal("Sucursal Canelones", 2, "Canelones", "333444", "3333222");
+		
+		
 	}
 	}
 
