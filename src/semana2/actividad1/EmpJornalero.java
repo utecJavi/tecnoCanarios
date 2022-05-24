@@ -39,6 +39,6 @@ public class EmpJornalero extends Empleado{
 	
 	public double getSueldo() {
 	return valorHora*horasRealizadasMes;
-	}	
+	}	//hola gente//
 
 }
