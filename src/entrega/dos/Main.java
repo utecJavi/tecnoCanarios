@@ -2,6 +2,8 @@ package entrega.dos;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,7 +18,7 @@ public class Main extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private static JPanel contentPane, grillaPersonas, grillaVehiculos;
 
 	/**
 	 * Launch the application.
@@ -26,12 +28,16 @@ public class Main extends JFrame {
 			public void run() {
 				try {
 					Main frame = new Main();
-					
-					frame.add(new PanelGrillaPersonas(frame));
-					
+
+					grillaPersonas = new PanelGrillaPersonas(frame);
+					grillaVehiculos = new PanelGrillaVehiculo(frame);
+
+//					contentPane.add(grillaPersonas);
+
+//					frame.add(new PanelGrillaPersonas(frame));
+//					frame.add(new PanelGrillaVehiculo(frame));
 					frame.setVisible(true);
-					
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -46,24 +52,56 @@ public class Main extends JFrame {
 		setTitle("TecnoCanarios");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 600);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		JMenu mainMenu = new JMenu("Main");
 		menuBar.add(mainMenu);
-		
+
 		JMenuItem grillaPersonasMenuItem = new JMenuItem("Grilla personas");
+		grillaPersonasMenuItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				contentPane.removeAll();
+				contentPane.add(grillaPersonas);
+
+				contentPane.revalidate();
+				contentPane.repaint();
+
+			}
+
+		});
 		mainMenu.add(grillaPersonasMenuItem);
-		
+
+		JMenuItem grillaVehiculosMenuItem = new JMenuItem("Grilla vehiculos");
+		grillaVehiculosMenuItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				contentPane.removeAll();
+				contentPane.add(grillaVehiculos);
+				
+				contentPane.revalidate();
+				contentPane.repaint();
+
+			}
+
+		});
+		mainMenu.add(grillaVehiculosMenuItem);
+
 		JMenuItem acercaDeMenuItem = new JMenuItem("Acerca de");
 		acercaDeMenuItem.addActionListener(new ActionAcercaDe(this));
 		mainMenu.add(acercaDeMenuItem);
-		
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+
 	}
 
 }

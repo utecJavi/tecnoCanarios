@@ -34,18 +34,18 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import com.toedter.calendar.JCalendar;
 
-public class PanelGrillaPersonas extends JPanel {
+public class PanelGrillaVehiculo extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private List<Persona> personas;
+	private List<Vehiculo> vehiculos;
 	private TableModel dataModel;
 	private JTable table;
 	private static JScrollPane scrollpane;
-public static JPanel botones;
+	public static JPanel botones;
 	private JButton botonAgregar, botonEliminar, botonMostrarVehiculos, agregarVehiculoPersona;
 	private static String filtroNombre = "", filtroApellido = "", filtroDepartamento = "Todos";
 
@@ -54,7 +54,7 @@ public static JPanel botones;
 	 * 
 	 * @param frame
 	 */
-	public PanelGrillaPersonas(Main frame) {
+	public PanelGrillaVehiculo(Main frame) {
 
 		setLayout(new BorderLayout());
 
@@ -73,26 +73,14 @@ public static JPanel botones;
 
 		add(filtrosJPanel, BorderLayout.NORTH);
 
-		personas = new LinkedList<Persona>();
-
-		personas.add(new Persona(1, "Danny", "Gutiérrez", "Canelones", (byte) 0, LocalDate.of(1983, 10, 19)));
-		personas.add(new Persona(2, "Marcos", "Lacerda", "Montevideo", (byte) 0, LocalDate.of(1986, 9, 10)));
-		personas.add(new Persona(3, "Javier", "Asuaga", "Montevideo", (byte) 0, LocalDate.of(1986, 9, 27)));
-		personas.add(new Persona(4, "Maximiliano", "Orlando", "San José", (byte) 0, LocalDate.of(1995, 8, 8)));
-		personas.add(new Persona(5, "Luciano", "Pereira", "Paysandú", (byte) 0, LocalDate.of(2000, 10, 10)));
-
 		Vehiculo vehiculo1 = new Barco(1, "Titanic", "Blanco", 150, 75);
 		Vehiculo vehiculo2 = new Avion(2, "Boening 747", "Plateado", 60, 200);
 
-		personas.get(0).agregarVehiculo(vehiculo1);
-		personas.get(0).agregarVehiculo(vehiculo2);
+		vehiculos = new LinkedList<Vehiculo>();
+		vehiculos.add(vehiculo1);
+		vehiculos.add(vehiculo2);
 
-		System.out.println(personas.get(0).getVehiculos());
-
-		Collections.reverse(personas.get(0).getVehiculos());
-		System.out.println(personas.get(0).getVehiculos());
-
-		dataModel = loadDataModel(personas);
+		dataModel = loadDataModel(vehiculos);
 
 		table = new JTable(dataModel);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -130,7 +118,7 @@ public static JPanel botones;
 
 		// CAMPOS
 		JTextField idField = new JTextField(10);
-		idField.setText(String.valueOf(getNextId()));
+//		idField.setText(String.valueOf(getNextId()));
 		idField.setEditable(false);
 		fieldsJPanel.add(idField);
 
@@ -192,7 +180,7 @@ public static JPanel botones;
 					Persona nuevaPersona = new Persona(idPersona, nombreField.getText(), apellidoField.getText(),
 							departamentosField.getSelectedItem().toString(), hijos, fecha);
 
-					personas.add(nuevaPersona);
+					
 
 					actualizarGrillaPersonas();
 
@@ -224,7 +212,7 @@ public static JPanel botones;
 				dialog.setVisible(true);
 
 				// RESET VALUES
-				idField.setText(String.valueOf(getNextId()));
+//				idField.setText(String.valueOf(getNextId()));
 				idField.setEditable(false);
 				nombreField.setText("");
 				nombreField.grabFocus();
@@ -245,7 +233,7 @@ public static JPanel botones;
 			public void actionPerformed(ActionEvent e) {
 
 				if (table.getSelectedRow() > -1) {
-					personas.remove(table.getSelectedRow());
+					
 					actualizarGrillaPersonas();
 				} else {
 					JOptionPane.showMessageDialog(table, "Debe seleccionar un registro", "ERROR",
@@ -257,29 +245,8 @@ public static JPanel botones;
 		botones.add(botonEliminar);
 
 		botonMostrarVehiculos = new JButton("Mostrar vehículos");
-		botonMostrarVehiculos.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if (table.getSelectedRow() > -1) {
-
-					if (personas.get(table.getSelectedRow()).getVehiculos().size() == 0) {
-						JOptionPane.showMessageDialog(table, "No se encontraron vehículos", "Vehículo",
-								JOptionPane.INFORMATION_MESSAGE, null);
-					}
-					for (Vehiculo v : personas.get(table.getSelectedRow()).getVehiculos()) {
-						JOptionPane.showMessageDialog(table, v, "Vehículo", JOptionPane.INFORMATION_MESSAGE, null);
-					}
-
-				} else {
-					JOptionPane.showMessageDialog(table, "Debe seleccionar un registro", "ERROR",
-							JOptionPane.ERROR_MESSAGE, null);
-				}
-
-			}
-		});
 		
+
 		botones.add(botonMostrarVehiculos);
 		agregarVehiculoPersona = new JButton("Agregar Vehiculo");
 		botones.add(agregarVehiculoPersona);
@@ -287,26 +254,26 @@ public static JPanel botones;
 	}
 
 	private void actualizarGrillaPersonas() {
-		table.setModel(loadDataModel(personas));
+
 
 		getScrollpane().revalidate();
 		getScrollpane().repaint();
 	}
 
-	private int getNextId() {
-		int valorId = 0;
-		for (Persona persona : personas) {
-			if (persona != null) {
-				if (persona.idPersona > valorId) {
-					valorId = persona.idPersona;
-				}
-			}
-		}
+//	private int getNextId() {
+//		int valorId = 0;
+//		for (Persona persona : personas) {
+//			if (persona != null) {
+//				if (persona.idPersona > valorId) {
+//					valorId = persona.idPersona;
+//				}
+//			}
+//		}
+//
+//		return ++valorId;
+//	}
 
-		return ++valorId;
-	}
-
-	public TableModel loadDataModel(List<Persona> listaPersonas) {
+	public TableModel loadDataModel(List<Vehiculo> listaVehiculos) {
 		return new AbstractTableModel() {
 			/**
 			 * 
@@ -314,11 +281,11 @@ public static JPanel botones;
 			private static final long serialVersionUID = 1L;
 
 			public int getColumnCount() {
-				return 6;
+				return 3;
 			}
 
 			public int getRowCount() {
-				return listaPersonas.size();
+				return listaVehiculos.size();
 			}
 
 			public Object getValueAt(int row, int col) {
@@ -327,31 +294,25 @@ public static JPanel botones;
 
 					boolean cumpleFiltrosFila = true;
 
-					Persona persona = listaPersonas.get(row);
+					Vehiculo vehiculo = listaVehiculos.get(row);
 
-					cumpleFiltrosFila = persona.getNombre().toUpperCase().indexOf(filtroNombre.toUpperCase()) > -1
-							? cumpleFiltrosFila
-							: false;
-					cumpleFiltrosFila = persona.getApellido().toUpperCase().indexOf(filtroApellido.toUpperCase()) > -1
-							? cumpleFiltrosFila
-							: false;
-					cumpleFiltrosFila = (persona.getDptoResidencia().equals(filtroDepartamento)
-							|| filtroDepartamento.equals("Todos")) ? cumpleFiltrosFila : false;
+//					cumpleFiltrosFila = persona.getNombre().toUpperCase().indexOf(filtroNombre.toUpperCase()) > -1
+//							? cumpleFiltrosFila
+//							: false;
+//					cumpleFiltrosFila = persona.getApellido().toUpperCase().indexOf(filtroApellido.toUpperCase()) > -1
+//							? cumpleFiltrosFila
+//							: false;
+//					cumpleFiltrosFila = (persona.getDptoResidencia().equals(filtroDepartamento)
+//							|| filtroDepartamento.equals("Todos")) ? cumpleFiltrosFila : false;
 
 					if (cumpleFiltrosFila) {
 						switch (col) {
 						case 0:
-							return persona.getIdPersona();
+							return vehiculo.getIdVehiculo();
 						case 1:
-							return persona.getNombre();
+							return vehiculo.getNombre();
 						case 2:
-							return persona.getApellido();
-						case 3:
-							return persona.getDptoResidencia();
-						case 4:
-							return persona.getCantHijos();
-						case 5:
-							return persona.getFechaNacimiento();
+							return vehiculo.getColor();
 						default:
 							throw new IllegalArgumentException("Unexpected value: " + col);
 						}
@@ -372,13 +333,7 @@ public static JPanel botones;
 				case 1:
 					return "Nombre";
 				case 2:
-					return "Apellido";
-				case 3:
-					return "Departamento";
-				case 4:
-					return "Hijos";
-				case 5:
-					return "Fecha nacimiento";
+					return "Color";
 				default:
 					throw new IllegalArgumentException("Unexpected value: " + column);
 				}
@@ -392,7 +347,7 @@ public static JPanel botones;
 	}
 
 	public static void setFiltroNombre(String filtroNombre) {
-		PanelGrillaPersonas.filtroNombre = filtroNombre;
+		PanelGrillaVehiculo.filtroNombre = filtroNombre;
 	}
 
 	public static JScrollPane getScrollpane() {
@@ -400,7 +355,7 @@ public static JPanel botones;
 	}
 
 	public static void setScrollpane(JScrollPane scrollpane) {
-		PanelGrillaPersonas.scrollpane = scrollpane;
+		PanelGrillaVehiculo.scrollpane = scrollpane;
 	}
 
 	public static String getFiltroApellido() {
@@ -408,7 +363,7 @@ public static JPanel botones;
 	}
 
 	public static void setFiltroApellido(String filtroApellido) {
-		PanelGrillaPersonas.filtroApellido = filtroApellido;
+		PanelGrillaVehiculo.filtroApellido = filtroApellido;
 	}
 
 	public static String getFiltroDepartamento() {
@@ -416,7 +371,7 @@ public static JPanel botones;
 	}
 
 	public static void setFiltroDepartamento(String filtroDepartamento) {
-		PanelGrillaPersonas.filtroDepartamento = filtroDepartamento;
+		PanelGrillaVehiculo.filtroDepartamento = filtroDepartamento;
 	}
 
 }
