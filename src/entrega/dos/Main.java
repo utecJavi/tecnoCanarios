@@ -32,10 +32,8 @@ public class Main extends JFrame {
 					grillaPersonas = new PanelGrillaPersonas(frame);
 					grillaVehiculos = new PanelGrillaVehiculo(frame);
 
-//					contentPane.add(grillaPersonas);
+					contentPane.add(grillaPersonas);
 
-//					frame.add(new PanelGrillaPersonas(frame));
-//					frame.add(new PanelGrillaVehiculo(frame));
 					frame.setVisible(true);
 
 				} catch (Exception e) {

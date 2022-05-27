@@ -45,7 +45,7 @@ public class PanelGrillaPersonas extends JPanel {
 	private TableModel dataModel;
 	private JTable table;
 	private static JScrollPane scrollpane;
-public static JPanel botones;
+	public static JPanel botones;
 	private JButton botonAgregar, botonEliminar, botonMostrarVehiculos, agregarVehiculoPersona;
 	private static String filtroNombre = "", filtroApellido = "", filtroDepartamento = "Todos";
 
@@ -87,10 +87,7 @@ public static JPanel botones;
 		personas.get(0).agregarVehiculo(vehiculo1);
 		personas.get(0).agregarVehiculo(vehiculo2);
 
-		System.out.println(personas.get(0).getVehiculos());
-
 		Collections.reverse(personas.get(0).getVehiculos());
-		System.out.println(personas.get(0).getVehiculos());
 
 		dataModel = loadDataModel(personas);
 
@@ -279,7 +276,7 @@ public static JPanel botones;
 
 			}
 		});
-		
+
 		botones.add(botonMostrarVehiculos);
 		agregarVehiculoPersona = new JButton("Agregar Vehiculo");
 		botones.add(agregarVehiculoPersona);
