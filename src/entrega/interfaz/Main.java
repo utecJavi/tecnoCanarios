@@ -8,5 +8,7 @@ public class Main {
 
 		LecturaConsumo lectura = new LecturaConsumo("C:\\Users\\Usuario\\Downloads\\RegistoConsumo.txt");
 	}
+	
+	
 
 }
