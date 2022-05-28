@@ -1,4 +1,4 @@
-package entrega.dos;
+package entrega.dos.accion_menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

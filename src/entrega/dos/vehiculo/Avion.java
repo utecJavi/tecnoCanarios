@@ -1,4 +1,4 @@
-package entrega.dos;
+package entrega.dos.vehiculo;
 
 public class Avion extends Vehiculo {
 
@@ -35,6 +35,11 @@ public class Avion extends Vehiculo {
 
 	public void setCantPasajeros(int cantPasajeros) {
 		this.cantPasajeros = cantPasajeros;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + " longitud=" + longitud + " cantPasajeros=" + cantPasajeros;
 	}
 
 }

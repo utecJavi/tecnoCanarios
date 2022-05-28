@@ -1,4 +1,4 @@
-package entrega.dos;
+package entrega.dos.vehiculo;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -17,19 +17,19 @@ import javax.swing.SwingConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class PanelFiltrosGrillaPersonas extends JPanel {
+public class PanelFiltrosGrillaVehiculosPersona extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public PanelFiltrosGrillaPersonas() {
+	public PanelFiltrosGrillaVehiculosPersona() {
 		setLayout(new GridLayout(0, 1));
 		JPanel gridFiltros = new JPanel(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
 
-		JLabel filtrosTexto = new JLabel("Filtros");
+		JLabel filtrosTexto = new JLabel("Filtros Vehículos");
 		filtrosTexto.setFont(new Font(Font.MONOSPACED, Font.BOLD, 24));
 		filtrosTexto.setHorizontalAlignment(SwingConstants.CENTER);
 		add(filtrosTexto, BorderLayout.NORTH);
@@ -49,94 +49,88 @@ public class PanelFiltrosGrillaPersonas extends JPanel {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				PanelGrillaPersonas.setFiltroNombre(filtroNombre.getText());
+				PanelGrillaVehiculoPersona.setFiltroNombre(filtroNombre.getText());
 				refreshGrid();
 			}
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				PanelGrillaPersonas.setFiltroNombre(filtroNombre.getText());
+				PanelGrillaVehiculoPersona.setFiltroNombre(filtroNombre.getText());
 				refreshGrid();
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				PanelGrillaPersonas.setFiltroNombre(filtroNombre.getText());
+				PanelGrillaVehiculoPersona.setFiltroNombre(filtroNombre.getText());
 				refreshGrid();
 			}
 		};
 		filtroNombre.getDocument().addDocumentListener(nombreListener);
 		gridFiltros.add(filtroNombre, constraints);
 
-
-		JLabel apellidoJLabel = new JLabel("Apellido");
+		JLabel colorJLabel = new JLabel("Color");
 		constraints.gridx = 2;
 		constraints.gridy = 0;
 		constraints.insets = new Insets(0, 10, 0, 0);
-		gridFiltros.add(apellidoJLabel, constraints);
+		gridFiltros.add(colorJLabel, constraints);
 
 		JTextField filtroApellido = new JTextField(10);
 		constraints.gridx = 3;
 		constraints.gridy = 0;
 		constraints.insets = new Insets(0, 5, 0, 15);
-		
 
-		DocumentListener apellidoListener = new DocumentListener() {
+		DocumentListener colorListener = new DocumentListener() {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				PanelGrillaPersonas.setFiltroApellido(filtroApellido.getText());
+				PanelGrillaVehiculoPersona.setFiltroColor(filtroApellido.getText());
 				refreshGrid();
 			}
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				PanelGrillaPersonas.setFiltroApellido(filtroApellido.getText());
+				PanelGrillaVehiculoPersona.setFiltroColor(filtroApellido.getText());
 				refreshGrid();
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				PanelGrillaPersonas.setFiltroApellido(filtroApellido.getText());
+				PanelGrillaVehiculoPersona.setFiltroColor(filtroApellido.getText());
 				refreshGrid();
 			}
 		};
-		filtroApellido.getDocument().addDocumentListener(apellidoListener);
+		filtroApellido.getDocument().addDocumentListener(colorListener);
 		gridFiltros.add(filtroApellido, constraints);
-		
-		
-		JLabel departamentoJLabel = new JLabel("Departamento");
+
+		JLabel tipoVehiculoJLabel = new JLabel("Tipo Vehículo");
 		constraints.gridx = 0;
 		constraints.gridy = 1;
 		constraints.insets = new Insets(10, 10, 20, 0);
-		gridFiltros.add(departamentoJLabel, constraints);
+		gridFiltros.add(tipoVehiculoJLabel, constraints);
 
-		String[] departamentos = Departamentos.getAsArray();
-		String[] filtroDepartamentos = new String[departamentos.length + 1];
-		filtroDepartamentos[0] = "Todos";
-		for (int i = 0; i < departamentos.length; i++) {
-			filtroDepartamentos[i + 1] = departamentos[i];
-		}
-		JComboBox<String> departamentosCombo = new JComboBox<>(filtroDepartamentos);
+		String[] filtroTipoVehiculo = new String[] { "Todos", "Avión", "Barco" };
+
+		JComboBox<String> tipoVehiculoCombo = new JComboBox<>(filtroTipoVehiculo);
 		constraints.gridx = 1;
 		constraints.gridy = 1;
-		constraints.insets = new Insets(10, 10, 20, 0);
-		
-		departamentosCombo.addItemListener(new ItemListener() {
-			
+		constraints.insets = new Insets(10, -40, 20, 0);
+
+		tipoVehiculoCombo.addItemListener(new ItemListener() {
+
 			public void itemStateChanged(ItemEvent e) {
-				PanelGrillaPersonas.setFiltroDepartamento(e.getItem().toString());
+				PanelGrillaVehiculoPersona.setFiltroTipoVehiculo(e.getItem().toString());
 				refreshGrid();
 			}
 		});
-		
-		gridFiltros.add(departamentosCombo, constraints);
+
+		gridFiltros.add(tipoVehiculoCombo, constraints);
 
 		add(gridFiltros);
 	}
-	
+
 	private void refreshGrid() {
-		PanelGrillaPersonas.getScrollpane().revalidate();
-		PanelGrillaPersonas.getScrollpane().repaint();
+
+		PanelGrillaVehiculoPersona.getScrollpane().revalidate();
+		PanelGrillaVehiculoPersona.getScrollpane().repaint();
 	}
 }

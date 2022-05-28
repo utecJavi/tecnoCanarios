@@ -1,8 +1,10 @@
-package entrega.dos;
+package entrega.dos.persona;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+
+import entrega.dos.vehiculo.Vehiculo;
 
 public class Persona {
 

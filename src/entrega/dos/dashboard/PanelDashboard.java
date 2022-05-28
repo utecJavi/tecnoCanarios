@@ -12,8 +12,9 @@ import javax.swing.JPanel;
 
 import entrega.dos.Departamentos;
 import entrega.dos.Main;
-import entrega.dos.PanelGrillaPersonas;
-import entrega.dos.Persona;
+import entrega.dos.persona.PanelGrillaPersonas;
+import entrega.dos.persona.Persona;
+import entrega.dos.vehiculo.PanelGrillaVehiculos;
 
 
 public class PanelDashboard extends JPanel {
@@ -45,10 +46,7 @@ public class PanelDashboard extends JPanel {
 			vehiculosPorDepartamento.put(departamento, 0);
 		}
 
-		double totalVehiculos = 0;
-		for (Persona persona : personas) {
-			totalVehiculos += persona.getVehiculos().size();
-		}
+		double totalVehiculos = PanelGrillaVehiculos.getVehiculos().size();
 
 		g2d.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 24));
 		g2d.drawString("Cantidad vehículos ingresados: " + (int) totalVehiculos, 30, 20);

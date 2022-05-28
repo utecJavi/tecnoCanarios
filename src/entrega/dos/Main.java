@@ -9,7 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import entrega.dos.accion_menu.ActionAcercaDe;
 import entrega.dos.dashboard.PanelDashboard;
+import entrega.dos.persona.PanelGrillaPersonas;
+import entrega.dos.vehiculo.PanelGrillaVehiculos;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -32,8 +35,8 @@ public class Main extends JFrame {
 				try {
 					Main frame = new Main();
 
+					grillaVehiculos = new PanelGrillaVehiculos(frame);
 					grillaPersonas = new PanelGrillaPersonas(frame);
-					grillaVehiculos = new PanelGrillaVehiculo(frame);
 					panelDashboard = new PanelDashboard(frame);
 
 					contentPane.add(grillaPersonas);
@@ -58,7 +61,7 @@ public class Main extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
-		JMenu mainMenu = new JMenu("Main");
+		JMenu mainMenu = new JMenu("Menú");
 		menuBar.add(mainMenu);
 
 		JMenuItem grillaPersonasMenuItem = new JMenuItem("Grilla personas");

@@ -1,4 +1,4 @@
-package entrega.dos;
+package entrega.dos.vehiculo;
 
 public class Barco extends Vehiculo {
 
@@ -34,6 +34,12 @@ public class Barco extends Vehiculo {
 
 	public void setManga(double manga) {
 		this.manga = manga;
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString() + " eslora=" + eslora + " manga=" + manga;
 	}
 
 }

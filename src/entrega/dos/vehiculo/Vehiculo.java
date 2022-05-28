@@ -1,4 +1,4 @@
-package entrega.dos;
+package entrega.dos.vehiculo;
 
 public class Vehiculo {
 	
