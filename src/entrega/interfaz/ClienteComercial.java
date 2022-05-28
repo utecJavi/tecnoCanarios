@@ -1,6 +1,6 @@
 package entrega.interfaz;
 
-public class ClienteComercial implements CargoFijo {
+public class ClienteComercial extends Cliente implements CargoFijo {
 	
 //	Defina otra implementación de nombre ClienteComercial para la interfaz, que:
 //		• tenga los siguientes atributos: el nombre, dirección, rut y los metros consumidos en
@@ -8,7 +8,7 @@ public class ClienteComercial implements CargoFijo {
 
 	private String nombre;
 	private String direccion;
-	private double rut;
+	private String rut;
 	private int metrosConsumidos;
 	
 	
@@ -16,7 +16,7 @@ public class ClienteComercial implements CargoFijo {
 		super();
 		
 	}
-	public ClienteComercial(String nombre, String direccion, double rut, int metrosConsumidos) {
+	public ClienteComercial(String nombre, String direccion, String rut, int metrosConsumidos) {
 		super();
 		this.nombre = nombre;
 		this.direccion = direccion;
@@ -35,10 +35,10 @@ public class ClienteComercial implements CargoFijo {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public double getRut() {
+	public String getRut() {
 		return rut;
 	}
-	public void setRut(double rut) {
+	public void setRut(String rut) {
 		this.rut = rut;
 	}
 	public int getMetrosConsumidos() {
@@ -67,6 +67,14 @@ public class ClienteComercial implements CargoFijo {
 
 		return resultado;
 	}
+	@Override
+	public String toString() {
+		return "ClienteComercial [nombre=" + nombre + ", direccion=" + direccion + ", rut=" + rut
+				+ ", metrosConsumidos=" + metrosConsumidos + ", calcularGastoDeConsumo()=" + calcularGastoDeConsumo()
+				+ "]";
+	}
+	
+	
 	
 
 }

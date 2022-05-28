@@ -1,14 +1,14 @@
 package entrega.interfaz;
 
-public class ClienteFamiliar implements CargoFijo {
+public class ClienteFamiliar extends Cliente implements CargoFijo {
 
 //	Defina una implementación de nombre ClienteFamiliar para la interfaz, que:
 //		• tenga los siguientes atributos: el nombre, dirección, cédula y los metros consumidos
 //		en una variable del tipo entera.
 
-	private String nombre, direccion, cedula;
+	private String nombre, direccion,cedula;
 	private int metrosConsumidos;
-
+	
 	public ClienteFamiliar() {
 	}
 
@@ -73,5 +73,13 @@ public class ClienteFamiliar implements CargoFijo {
 
 		return resultado;
 	}
+
+	@Override
+	public String toString() {
+		return "ClienteFamiliar [nombre=" + nombre + ", direccion=" + direccion + ", cedula=" + cedula
+				+ ", metrosConsumidos=" + metrosConsumidos + ", calcularGastoDeConsumo()=" + calcularGastoDeConsumo()
+				+ "]";
+	}
+	
 
 }
