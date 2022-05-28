@@ -42,6 +42,7 @@ public class PanelGrillaVehiculo extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private List<Vehiculo> vehiculos;
+	private List<Persona> personas = PanelGrillaPersonas.getPersonas();
 	private TableModel dataModel;
 	private JTable table;
 	private static JScrollPane scrollpane;
@@ -73,12 +74,10 @@ public class PanelGrillaVehiculo extends JPanel {
 
 		add(filtrosJPanel, BorderLayout.NORTH);
 
-		Vehiculo vehiculo1 = new Barco(1, "Titanic", "Blanco", 150, 75);
-		Vehiculo vehiculo2 = new Avion(2, "Boening 747", "Plateado", 60, 200);
-
 		vehiculos = new LinkedList<Vehiculo>();
-		vehiculos.add(vehiculo1);
-		vehiculos.add(vehiculo2);
+		for (Persona persona : personas) {
+			vehiculos.addAll(persona.getVehiculos());
+		}
 
 		dataModel = loadDataModel(vehiculos);
 

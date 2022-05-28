@@ -8,7 +8,6 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -41,7 +40,7 @@ public class PanelGrillaPersonas extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private List<Persona> personas;
+	private static List<Persona> personas;
 	private TableModel dataModel;
 	private JTable table;
 	private static JScrollPane scrollpane;
@@ -83,11 +82,11 @@ public class PanelGrillaPersonas extends JPanel {
 
 		Vehiculo vehiculo1 = new Barco(1, "Titanic", "Blanco", 150, 75);
 		Vehiculo vehiculo2 = new Avion(2, "Boening 747", "Plateado", 60, 200);
-
+		Vehiculo vehiculo3 = new Avion(3, "Boening 747", "Plateado", 60, 200);
+		
 		personas.get(0).agregarVehiculo(vehiculo1);
 		personas.get(0).agregarVehiculo(vehiculo2);
-
-		Collections.reverse(personas.get(0).getVehiculos());
+		personas.get(1).agregarVehiculo(vehiculo3);
 
 		dataModel = loadDataModel(personas);
 
@@ -416,4 +415,7 @@ public class PanelGrillaPersonas extends JPanel {
 		PanelGrillaPersonas.filtroDepartamento = filtroDepartamento;
 	}
 
+	public static List<Persona> getPersonas(){
+		return personas;
+	}
 }
